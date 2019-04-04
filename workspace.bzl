@@ -15,5 +15,7 @@
 #
 """Dependency handling for @com_etherealwake_tools."""
 
+load("//third_party/clang+llvm:repo.bzl", "llvm_dependencies")
+
 def tools_dependencies():
-    pass
+    llvm_dependencies()
