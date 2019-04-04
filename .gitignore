@@ -1,0 +1,11 @@
+# Bazel Build Artifacts
+/bazel-*
+/user.bazelrc
+
+# Editor Debris
+*.bak
+*.swp
+*.tmp
+
+# Visual Studio Code
+/.vscode
