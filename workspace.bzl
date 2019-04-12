@@ -16,11 +16,22 @@
 """Dependency handling for @com_etherealwake_tools."""
 
 load("//third_party/arm-none-eabi:repo.bzl", "arm_dependencies")
+load("//third_party/chrome-linux-sysroot:repo.bzl", "linux_dependencies")
 load("//third_party/clang+llvm:repo.bzl", "llvm_dependencies")
 
 def tools_dependencies():
     arm_dependencies()
     llvm_dependencies()
+    linux_dependencies()
+
+def tools_register_cross_toolchains():
+    """Register C/C++ Toolchains for Cross-Compiling."""
+    native.register_toolchains(
+        "@com_etherealwake_tools//tools/cpp:aarch64-linux",
+        "@com_etherealwake_tools//tools/cpp:arm-linux",
+        "@com_etherealwake_tools//tools/cpp:i386-linux",
+        "@com_etherealwake_tools//tools/cpp:x86_64-linux",
+    )
 
 def tools_register_native_toolchains():
     """Register C/C++ Toolchains for Native Builds."""

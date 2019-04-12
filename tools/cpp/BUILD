@@ -92,7 +92,11 @@ cc_toolchain_suite(
 cc_toolchain_suite(
     name = "toolchain-cross",
     toolchains = {
+        "aarch64": ":aarch64-linux-toolchain",
+        "arm": ":arm-linux-toolchain",
         "cortex-m4f": ":cortex-m4f-toolchain",
+        "k8": ":x86_64-linux-toolchain",
+        "piii": ":i386-linux-toolchain",
     },
 )
 
@@ -126,6 +130,86 @@ clang_toolchain(
 #
 # Linux
 #
+
+clang_toolchain(
+    name = "arm-linux",
+    copts = [
+        "--target=armv7a-unknown-linux-gnueabihf",
+    ] + UNIX_COPTS,
+    cpu = "armv7-linux",
+    features = UNIX_FEATURES,
+    linkopts = [
+        "--target=armv7a-unknown-linux-gnueabihf",
+    ] + UNIX_LINKOPTS,
+    modes = UNIX_MODES,
+    sysroot = "@org_chromium_sysroot_linux_arm//:sysroot",
+    target = "armv7a-unknown-linux-gnueabihf",
+    target_compatible_with = [
+        "//constraints/cpu:arm",
+        "//constraints/os:linux",
+    ],
+    target_files = ["@org_chromium_sysroot_linux_arm//:all_files"],
+)
+
+clang_toolchain(
+    name = "aarch64-linux",
+    copts = [
+        "--target=aarch64-unknown-linux-gnu",
+    ] + UNIX_COPTS,
+    cpu = "aarch64-linux",
+    features = UNIX_FEATURES,
+    linkopts = [
+        "--target=aarch64-unknown-linux-gnu",
+    ] + UNIX_LINKOPTS,
+    modes = UNIX_MODES,
+    sysroot = "@org_chromium_sysroot_linux_arm64//:sysroot",
+    target = "aarch64-unknown-linux-gnu",
+    target_compatible_with = [
+        "//constraints/cpu:aarch64",
+        "//constraints/os:linux",
+    ],
+    target_files = ["@org_chromium_sysroot_linux_arm64//:all_files"],
+)
+
+clang_toolchain(
+    name = "i386-linux",
+    copts = [
+        "--target=i386-unknown-linux-gnu",
+    ] + UNIX_COPTS,
+    cpu = "i386-linux",
+    features = UNIX_FEATURES,
+    linkopts = [
+        "--target=i386-unknown-linux-gnu",
+    ] + UNIX_LINKOPTS,
+    modes = UNIX_MODES,
+    sysroot = "@org_chromium_sysroot_linux_i386//:sysroot",
+    target = "i386-unknown-linux-gnu",
+    target_compatible_with = [
+        "//constraints/cpu:i386",
+        "//constraints/os:linux",
+    ],
+    target_files = ["@org_chromium_sysroot_linux_i386//:all_files"],
+)
+
+clang_toolchain(
+    name = "x86_64-linux",
+    copts = [
+        "--target=x86_64-unknown-linux-gnu",
+    ] + UNIX_COPTS,
+    cpu = "x86_64-linux",
+    features = UNIX_FEATURES,
+    linkopts = [
+        "--target=x86_64-unknown-linux-gnu",
+    ] + UNIX_LINKOPTS,
+    modes = UNIX_MODES,
+    sysroot = "@org_chromium_sysroot_linux_amd64//:sysroot",
+    target = "x86_64-unknown-linux-gnu",
+    target_compatible_with = [
+        "//constraints/cpu:x86_64",
+        "//constraints/os:linux",
+    ],
+    target_files = ["@org_chromium_sysroot_linux_amd64//:all_files"],
+)
 
 # Native Build
 clang_toolchain(
