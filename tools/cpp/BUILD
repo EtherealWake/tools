@@ -15,7 +15,7 @@
 #
 """C/C++ Language Support."""
 
-load("//cc:toolchain.bzl", "clang_toolchain")
+load("//cc:toolchain.bzl", "arm_toolchain", "clang_toolchain")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -84,6 +84,15 @@ cc_toolchain_suite(
     toolchains = {
         "freebsd": ":x86_64-freebsd-native-toolchain",
         "k8": ":x86_64-linux-native-toolchain",
+        "k8|clang": ":x86_64-linux-native-toolchain",
+        "k8|compiler": ":x86_64-linux-native-toolchain",
+    },
+)
+
+cc_toolchain_suite(
+    name = "toolchain-cross",
+    toolchains = {
+        "cortex-m4f": ":cortex-m4f-toolchain",
     },
 )
 
@@ -142,8 +151,70 @@ clang_toolchain(
 )
 
 #
+# ARM Embedded
+#
+
+arm_toolchain(
+    name = "cortex-m4f",
+    copts = [
+        "-fdiagnostics-color",
+        # Targetting
+        "-mcpu=cortex-m4",
+        "-mfloat-abi=hard",
+        "--specs=nosys.specs",
+        # Diagnostics
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        # Optimization
+        "-Os",
+        "-flto",
+    ],
+    cpu = "cortex-m4f",
+    linkopts = [
+        "-fdiagnostics-color",
+        # Targetting
+        "-mcpu=cortex-m4",
+        "-mfloat-abi=hard",
+        "-nostartfiles",
+        "-Wl,--nmagic",
+        "--specs=nosys.specs",
+        # Diagnostics
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+    ],
+    modes = {
+        "dbg.copts": [
+            "-gz",
+            "-ggdb",
+        ],
+        "fastbuild.copts": ["-g0"],
+        "opt.copts": [
+            "-gz",
+            "-ggdb",
+        ],
+    },
+    target = "armv7em-none-eabihf",
+    target_compatible_with = [
+        "//constraints/core/arm:cortex-m4",
+        "//constraints/cpu:arm",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
+        "//constraints/os:none",
+    ],
+)
+
+#
 # Tests
 #
+
+# Validation of Embedded Build
+cc_binary(
+    name = "start",
+    srcs = ["start.cpp"],
+    tags = ["manual"],
+)
 
 cc_test(
     name = "test",

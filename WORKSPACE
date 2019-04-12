@@ -19,4 +19,9 @@ load(":workspace.bzl", "tools_dependencies", "tools_register_native_toolchains")
 
 tools_dependencies()
 
+# Demonstration Toolchains
+register_toolchains(
+    "@com_etherealwake_tools//tools/cpp:cortex-m4f",
+)
+
 tools_register_native_toolchains()

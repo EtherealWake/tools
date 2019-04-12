@@ -16,10 +16,17 @@
 """Rules for Generating C/C++ Toolchains."""
 
 load(
+    "//cc/private:arm.bzl",
+    _arm_cc_toolchain_config = "arm_cc_toolchain_config",
+    _arm_toolchain = "arm_toolchain",
+)
+load(
     "//cc/private:clang.bzl",
     _clang_cc_toolchain_config = "clang_cc_toolchain_config",
     _clang_toolchain = "clang_toolchain",
 )
 
+arm_toolchain = _arm_toolchain
+arm_cc_toolchain_config = _arm_cc_toolchain_config
 clang_toolchain = _clang_toolchain
 clang_cc_toolchain_config = _clang_cc_toolchain_config
