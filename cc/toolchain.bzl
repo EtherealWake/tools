@@ -13,18 +13,13 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
-"""Dependency handling for @com_etherealwake_tools."""
+"""Rules for Generating C/C++ Toolchains."""
 
-load("//third_party/arm-none-eabi:repo.bzl", "arm_dependencies")
-load("//third_party/clang+llvm:repo.bzl", "llvm_dependencies")
+load(
+    "//cc/private:clang.bzl",
+    _clang_cc_toolchain_config = "clang_cc_toolchain_config",
+    _clang_toolchain = "clang_toolchain",
+)
 
-def tools_dependencies():
-    arm_dependencies()
-    llvm_dependencies()
-
-def tools_register_native_toolchains():
-    """Register C/C++ Toolchains for Native Builds."""
-    native.register_toolchains(
-        "@com_etherealwake_tools//tools/cpp:x86_64-freebsd-native",
-        "@com_etherealwake_tools//tools/cpp:x86_64-linux-native",
-    )
+clang_toolchain = _clang_toolchain
+clang_cc_toolchain_config = _clang_cc_toolchain_config

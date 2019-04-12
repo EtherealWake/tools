@@ -15,6 +15,8 @@
 #
 workspace(name = "com_etherealwake_tools")
 
-load(":workspace.bzl", "tools_dependencies")
+load(":workspace.bzl", "tools_dependencies", "tools_register_native_toolchains")
 
 tools_dependencies()
+
+tools_register_native_toolchains()
