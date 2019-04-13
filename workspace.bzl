@@ -29,6 +29,12 @@ def tools_dependencies():
 def tools_register_cross_toolchains():
     """Register C/C++ Toolchains for Cross-Compiling."""
     native.register_toolchains(
+        # FreeBSD Targets
+        "@com_etherealwake_tools//tools/cpp:aarch64-freebsd",
+        "@com_etherealwake_tools//tools/cpp:arm-freebsd",
+        "@com_etherealwake_tools//tools/cpp:i386-freebsd",
+        "@com_etherealwake_tools//tools/cpp:x86_64-freebsd",
+        # Linux Targets
         "@com_etherealwake_tools//tools/cpp:aarch64-linux",
         "@com_etherealwake_tools//tools/cpp:arm-linux",
         "@com_etherealwake_tools//tools/cpp:i386-linux",

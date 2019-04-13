@@ -83,6 +83,8 @@ cc_toolchain_suite(
     name = "toolchain",
     toolchains = {
         "freebsd": ":x86_64-freebsd-native-toolchain",
+        "freebsd|clang": ":x86_64-freebsd-native-toolchain",
+        "freebsd|compiler": ":x86_64-freebsd-native-toolchain",
         "k8": ":x86_64-linux-native-toolchain",
         "k8|clang": ":x86_64-linux-native-toolchain",
         "k8|compiler": ":x86_64-linux-native-toolchain",
@@ -95,6 +97,10 @@ cc_toolchain_suite(
         "aarch64": ":aarch64-linux-toolchain",
         "arm": ":arm-linux-toolchain",
         "cortex-m4f": ":cortex-m4f-toolchain",
+        "freebsd": ":x86_64-freebsd-toolchain",
+        "freebsd-aarch64": ":aarch64-freebsd",
+        "freebsd-arm": ":arm-freebsd",
+        "freebsd-piii": ":i386-freebsd-toolchain",
         "k8": ":x86_64-linux-toolchain",
         "piii": ":i386-linux-toolchain",
     },
@@ -103,6 +109,78 @@ cc_toolchain_suite(
 #
 # FreeBSD
 #
+
+clang_toolchain(
+    name = "aarch64-freebsd",
+    copts = [
+        "--target=aarch64-unknown-freebsd12.0",
+    ] + UNIX_COPTS,
+    cpu = "aarch64-freebsd",
+    features = UNIX_FEATURES,
+    linkopts = UNIX_LINKOPTS,
+    modes = UNIX_MODES,
+    sysroot = "@com_etherealwake_sysroot_freebsd_arm64//:sysroot",
+    target = "aarch64-unknown-freebsd12.0",
+    target_compatible_with = [
+        "//constraints/cpu:aarch64",
+        "//constraints/os:freebsd",
+    ],
+    target_files = ["@com_etherealwake_sysroot_freebsd_arm64//:all_files"],
+)
+
+clang_toolchain(
+    name = "arm-freebsd",
+    copts = [
+        "--target=armv7a-unknown-freebsd12.0-gnueabihf",
+    ] + UNIX_COPTS,
+    cpu = "armv7-freebsd",
+    features = UNIX_FEATURES,
+    linkopts = UNIX_LINKOPTS,
+    modes = UNIX_MODES,
+    sysroot = "@com_etherealwake_sysroot_freebsd_armv7//:sysroot",
+    target = "armv7a-unknown-freebsd12.0-gnueabihf",
+    target_compatible_with = [
+        "//constraints/cpu:arm",
+        "//constraints/os:freebsd",
+    ],
+    target_files = ["@com_etherealwake_sysroot_freebsd_armv7//:all_files"],
+)
+
+clang_toolchain(
+    name = "i386-freebsd",
+    copts = [
+        "--target=i386-unknown-freebsd12.0",
+    ] + UNIX_COPTS,
+    cpu = "i386-freebsd",
+    features = UNIX_FEATURES,
+    linkopts = UNIX_LINKOPTS,
+    modes = UNIX_MODES,
+    sysroot = "@com_etherealwake_sysroot_freebsd_i386//:sysroot",
+    target = "i386-unknown-freebsd12.0",
+    target_compatible_with = [
+        "//constraints/cpu:i386",
+        "//constraints/os:freebsd",
+    ],
+    target_files = ["@com_etherealwake_sysroot_freebsd_i386//:all_files"],
+)
+
+clang_toolchain(
+    name = "x86_64-freebsd",
+    copts = [
+        "--target=x86_64-unknown-freebsd12.0",
+    ] + UNIX_COPTS,
+    cpu = "x86_64-freebsd",
+    features = UNIX_FEATURES,
+    linkopts = UNIX_LINKOPTS,
+    modes = UNIX_MODES,
+    sysroot = "@com_etherealwake_sysroot_freebsd_amd64//:sysroot",
+    target = "x86_64-unknown-freebsd12.0",
+    target_compatible_with = [
+        "//constraints/cpu:x86_64",
+        "//constraints/os:freebsd",
+    ],
+    target_files = ["@com_etherealwake_sysroot_freebsd_amd64//:all_files"],
+)
 
 # Native Build
 clang_toolchain(
