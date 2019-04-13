@@ -18,10 +18,12 @@
 load("//third_party/arm-none-eabi:repo.bzl", "arm_dependencies")
 load("//third_party/chrome-linux-sysroot:repo.bzl", "linux_dependencies")
 load("//third_party/clang+llvm:repo.bzl", "llvm_dependencies")
+load("//third_party/freebsd-base:repo.bzl", "freebsd_dependencies")
 
 def tools_dependencies():
     arm_dependencies()
     llvm_dependencies()
+    freebsd_dependencies()
     linux_dependencies()
 
 def tools_register_cross_toolchains():
