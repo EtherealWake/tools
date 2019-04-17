@@ -15,7 +15,9 @@
 #
 """C/C++ Language Support."""
 
+load("//cc:rules.bzl", "cc_library", "cc_test")
 load("//cc:toolchain.bzl", "arm_toolchain", "clang_toolchain")
+load("//embedded:rules.bzl", "embedded_binary")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -371,11 +373,10 @@ arm_toolchain(
 # Tests
 #
 
-# Validation of Embedded Build
-cc_binary(
-    name = "start",
+embedded_binary(
+    name = "embedded",
     srcs = ["start.cpp"],
-    tags = ["manual"],
+    platform = "//platforms/arm:cortex-m4f",
 )
 
 cc_test(

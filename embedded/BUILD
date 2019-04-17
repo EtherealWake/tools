@@ -13,22 +13,4 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
-workspace(name = "com_etherealwake_tools")
-
-load(
-    ":workspace.bzl",
-    "tools_dependencies",
-    "tools_register_cross_toolchains",
-    "tools_register_native_toolchains",
-)
-
-tools_dependencies()
-
-# Demonstration Toolchains
-register_toolchains(
-    "//tools/cpp:cortex-m4f",
-)
-
-tools_register_native_toolchains()
-
-tools_register_cross_toolchains()
+package(default_visibility = ["//visibility:public"])
