@@ -16,7 +16,7 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 VERSION = "12.0-RELEASE"
-_BUILD = "@com_etherealwake_tools//third_party/freebsd-base:repo.BUILD"
+_BUILD = "@com_etherealwake_tools//third_party/freebsd-sysroot:repo.BUILD"
 _URL = "https://github.com/EtherealWake/freebsd-sysroot/releases/download/%s/" % VERSION
 
 def _maybe(name, rule, **kwargs):
