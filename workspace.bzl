@@ -30,20 +30,20 @@ def tools_register_cross_toolchains():
     """Register C/C++ Toolchains for Cross-Compiling."""
     native.register_toolchains(
         # FreeBSD Targets
-        "@com_etherealwake_tools//tools/cpp:aarch64-freebsd",
-        "@com_etherealwake_tools//tools/cpp:arm-freebsd",
-        "@com_etherealwake_tools//tools/cpp:i386-freebsd",
-        "@com_etherealwake_tools//tools/cpp:x86_64-freebsd",
+        "@com_etherealwake_tools//tools/cpp:aarch64-unknown-freebsd",
+        "@com_etherealwake_tools//tools/cpp:armv7-gnueabihf-freebsd",
+        "@com_etherealwake_tools//tools/cpp:i386-unknown-freebsd",
+        "@com_etherealwake_tools//tools/cpp:x86_64-unknown-freebsd",
         # Linux Targets
-        "@com_etherealwake_tools//tools/cpp:aarch64-linux",
-        "@com_etherealwake_tools//tools/cpp:arm-linux",
-        "@com_etherealwake_tools//tools/cpp:i386-linux",
-        "@com_etherealwake_tools//tools/cpp:x86_64-linux",
+        "@com_etherealwake_tools//tools/cpp:aarch64-unknown-linux-gnu",
+        "@com_etherealwake_tools//tools/cpp:armv7a-unknown-linux-gnueabihf",
+        "@com_etherealwake_tools//tools/cpp:i686-pc-linux-gnu",
+        "@com_etherealwake_tools//tools/cpp:x86_64-pc-linux-gnu",
     )
 
 def tools_register_native_toolchains():
     """Register C/C++ Toolchains for Native Builds."""
     native.register_toolchains(
-        "@com_etherealwake_tools//tools/cpp:x86_64-freebsd-native",
-        "@com_etherealwake_tools//tools/cpp:x86_64-linux-native",
+        "@com_etherealwake_tools//tools/cpp:x86_64-unknown-freebsd-native",
+        "@com_etherealwake_tools//tools/cpp:x86_64-pc-linux-gnu-native",
     )

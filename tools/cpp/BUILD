@@ -78,48 +78,19 @@ UNIX_MODES = {
 filegroup(name = "empty")
 
 #
-# Legacy Configuration
-#
-
-cc_toolchain_suite(
-    name = "toolchain",
-    toolchains = {
-        "freebsd": ":x86_64-freebsd-native-toolchain",
-        "freebsd|clang": ":x86_64-freebsd-native-toolchain",
-        "freebsd|compiler": ":x86_64-freebsd-native-toolchain",
-        "k8": ":x86_64-linux-native-toolchain",
-        "k8|clang": ":x86_64-linux-native-toolchain",
-        "k8|compiler": ":x86_64-linux-native-toolchain",
-    },
-)
-
-cc_toolchain_suite(
-    name = "toolchain-cross",
-    toolchains = {
-        "aarch64": ":aarch64-linux-toolchain",
-        "arm": ":arm-linux-toolchain",
-        "cortex-m4f": ":cortex-m4f-toolchain",
-        "freebsd": ":x86_64-freebsd-toolchain",
-        "freebsd-aarch64": ":aarch64-freebsd",
-        "freebsd-arm": ":arm-freebsd",
-        "freebsd-piii": ":i386-freebsd-toolchain",
-        "k8": ":x86_64-linux-toolchain",
-        "piii": ":i386-linux-toolchain",
-    },
-)
-
-#
 # FreeBSD
 #
 
 clang_toolchain(
-    name = "aarch64-freebsd",
+    name = "aarch64-unknown-freebsd",
     copts = [
         "--target=aarch64-unknown-freebsd12.0",
     ] + UNIX_COPTS,
-    cpu = "aarch64-freebsd",
+    cpu = "aarch64",
     features = UNIX_FEATURES,
-    linkopts = UNIX_LINKOPTS,
+    linkopts = [
+        "--target=aarch64-unknown-freebsd12.0",
+    ] + UNIX_LINKOPTS,
     modes = UNIX_MODES,
     sysroot = "@com_etherealwake_sysroot_freebsd_arm64//:sysroot",
     target = "aarch64-unknown-freebsd12.0",
@@ -131,17 +102,20 @@ clang_toolchain(
 )
 
 clang_toolchain(
-    name = "arm-freebsd",
+    name = "armv7-gnueabihf-freebsd",
     copts = [
-        "--target=armv7a-unknown-freebsd12.0-gnueabihf",
+        "--target=armv7-gnueabihf-freebsd12.0",
     ] + UNIX_COPTS,
-    cpu = "armv7-freebsd",
+    cpu = "armv7",
     features = UNIX_FEATURES,
-    linkopts = UNIX_LINKOPTS,
+    linkopts = [
+        "--target=armv7-gnueabihf-freebsd12.0",
+    ] + UNIX_LINKOPTS,
     modes = UNIX_MODES,
     sysroot = "@com_etherealwake_sysroot_freebsd_armv7//:sysroot",
-    target = "armv7a-unknown-freebsd12.0-gnueabihf",
+    target = "armv7a-gnueabihf-freebsd12.0",
     target_compatible_with = [
+        "//constraints/arch/arm:armv7-a",
         "//constraints/cpu:arm",
         "//constraints/os:freebsd",
     ],
@@ -149,31 +123,35 @@ clang_toolchain(
 )
 
 clang_toolchain(
-    name = "i386-freebsd",
+    name = "i386-unknown-freebsd",
     copts = [
         "--target=i386-unknown-freebsd12.0",
     ] + UNIX_COPTS,
-    cpu = "i386-freebsd",
+    cpu = "x86_32",
     features = UNIX_FEATURES,
-    linkopts = UNIX_LINKOPTS,
+    linkopts = [
+        "--target=i386-unknown-freebsd12.0",
+    ] + UNIX_LINKOPTS,
     modes = UNIX_MODES,
     sysroot = "@com_etherealwake_sysroot_freebsd_i386//:sysroot",
     target = "i386-unknown-freebsd12.0",
     target_compatible_with = [
-        "//constraints/cpu:i386",
+        "//constraints/cpu:x86_32",
         "//constraints/os:freebsd",
     ],
     target_files = ["@com_etherealwake_sysroot_freebsd_i386//:all_files"],
 )
 
 clang_toolchain(
-    name = "x86_64-freebsd",
+    name = "x86_64-unknown-freebsd",
     copts = [
         "--target=x86_64-unknown-freebsd12.0",
     ] + UNIX_COPTS,
-    cpu = "x86_64-freebsd",
+    cpu = "x86_64",
     features = UNIX_FEATURES,
-    linkopts = UNIX_LINKOPTS,
+    linkopts = [
+        "--target=x86_64-unknown-freebsd12.0",
+    ] + UNIX_LINKOPTS,
     modes = UNIX_MODES,
     sysroot = "@com_etherealwake_sysroot_freebsd_amd64//:sysroot",
     target = "x86_64-unknown-freebsd12.0",
@@ -186,7 +164,7 @@ clang_toolchain(
 
 # Native Build
 clang_toolchain(
-    name = "x86_64-freebsd-native",
+    name = "x86_64-unknown-freebsd-native",
     builtin_include_directories = [
         "/usr/include",
         "/usr/lib/clang",
@@ -212,11 +190,11 @@ clang_toolchain(
 #
 
 clang_toolchain(
-    name = "arm-linux",
+    name = "armv7a-unknown-linux-gnueabihf",
     copts = [
         "--target=armv7a-unknown-linux-gnueabihf",
     ] + UNIX_COPTS,
-    cpu = "armv7-linux",
+    cpu = "armv7",
     features = UNIX_FEATURES,
     linkopts = [
         "--target=armv7a-unknown-linux-gnueabihf",
@@ -225,6 +203,7 @@ clang_toolchain(
     sysroot = "@org_chromium_sysroot_linux_arm//:sysroot",
     target = "armv7a-unknown-linux-gnueabihf",
     target_compatible_with = [
+        "//constraints/arch/arm:armv7-a",
         "//constraints/cpu:arm",
         "//constraints/os:linux",
     ],
@@ -232,11 +211,11 @@ clang_toolchain(
 )
 
 clang_toolchain(
-    name = "aarch64-linux",
+    name = "aarch64-unknown-linux-gnu",
     copts = [
         "--target=aarch64-unknown-linux-gnu",
     ] + UNIX_COPTS,
-    cpu = "aarch64-linux",
+    cpu = "aarch64",
     features = UNIX_FEATURES,
     linkopts = [
         "--target=aarch64-unknown-linux-gnu",
@@ -252,38 +231,38 @@ clang_toolchain(
 )
 
 clang_toolchain(
-    name = "i386-linux",
+    name = "i686-pc-linux-gnu",
     copts = [
-        "--target=i386-unknown-linux-gnu",
+        "--target=i686-pc-linux-gnu",
     ] + UNIX_COPTS,
-    cpu = "i386-linux",
+    cpu = "x86_32",
     features = UNIX_FEATURES,
     linkopts = [
-        "--target=i386-unknown-linux-gnu",
+        "--target=i686-pc-linux-gnu",
     ] + UNIX_LINKOPTS,
     modes = UNIX_MODES,
     sysroot = "@org_chromium_sysroot_linux_i386//:sysroot",
-    target = "i386-unknown-linux-gnu",
+    target = "i686-pc-linux-gnu",
     target_compatible_with = [
-        "//constraints/cpu:i386",
+        "//constraints/cpu:x86_32",
         "//constraints/os:linux",
     ],
     target_files = ["@org_chromium_sysroot_linux_i386//:all_files"],
 )
 
 clang_toolchain(
-    name = "x86_64-linux",
+    name = "x86_64-pc-linux-gnu",
     copts = [
-        "--target=x86_64-unknown-linux-gnu",
+        "--target=x86_64-pc-linux-gnu",
     ] + UNIX_COPTS,
-    cpu = "x86_64-linux",
+    cpu = "x86_64",
     features = UNIX_FEATURES,
     linkopts = [
-        "--target=x86_64-unknown-linux-gnu",
+        "--target=x86_64-pc-linux-gnu",
     ] + UNIX_LINKOPTS,
     modes = UNIX_MODES,
     sysroot = "@org_chromium_sysroot_linux_amd64//:sysroot",
-    target = "x86_64-unknown-linux-gnu",
+    target = "x86_64-pc-linux-gnu",
     target_compatible_with = [
         "//constraints/cpu:x86_64",
         "//constraints/os:linux",
@@ -293,7 +272,7 @@ clang_toolchain(
 
 # Native Build
 clang_toolchain(
-    name = "x86_64-linux-native",
+    name = "x86_64-pc-linux-gnu-native",
     builtin_include_directories = [
         "/usr/include",
         "/usr/lib/gcc",
@@ -307,7 +286,7 @@ clang_toolchain(
     features = UNIX_FEATURES,
     linkopts = UNIX_LINKOPTS,
     modes = UNIX_MODES,
-    target = "x86_64-unknown-linux-gnu",
+    target = "x86_64-pc-linux-gnu",
     target_compatible_with = [
         "//constraints/cpu:x86_64",
         "//constraints/os:linux",

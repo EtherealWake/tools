@@ -30,13 +30,6 @@ config_setting(
 )
 
 config_setting(
-    name = "i386",
-    constraint_values = [
-        "//constraints/cpu:i386",
-    ],
-)
-
-config_setting(
     name = "mips",
     constraint_values = [
         "//constraints/cpu:mips",
@@ -68,6 +61,13 @@ config_setting(
     name = "s390x",
     constraint_values = [
         "//constraints/cpu:s390x",
+    ],
+)
+
+config_setting(
+    name = "x86_32",
+    constraint_values = [
+        "//constraints/cpu:x86_32",
     ],
 )
 

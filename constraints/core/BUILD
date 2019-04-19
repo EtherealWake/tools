@@ -17,10 +17,4 @@ package(default_visibility = ["//visibility:public"])
 
 constraint_setting(
     name = "core",
-    default_constraint_value = "generic",
-)
-
-constraint_value(
-    name = "generic",
-    constraint_setting = ":core",
 )

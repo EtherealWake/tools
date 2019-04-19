@@ -20,7 +20,7 @@ package(default_visibility = ["//visibility:public"])
 #
 
 config_setting(
-    name = "x86_64-dragonfly",
+    name = "x86_64-pc-dragonfly",
     constraint_values = [
         "//constraints/cpu:x86_64",
         "//constraints/os:dragonfly",
@@ -32,7 +32,7 @@ config_setting(
 #
 
 config_setting(
-    name = "aarch64-freebsd",
+    name = "aarch64-unknown-freebsd",
     constraint_values = [
         "//constraints/cpu:aarch64",
         "//constraints/os:freebsd",
@@ -40,23 +40,25 @@ config_setting(
 )
 
 config_setting(
-    name = "arm-freebsd",
+    name = "armv7-gnueabihf-freebsd",
     constraint_values = [
+        "//constraints/arch/arm:armv7-a",
         "//constraints/cpu:arm",
+        "//constraints/float:hard",
         "//constraints/os:freebsd",
     ],
 )
 
 config_setting(
-    name = "i386-freebsd",
+    name = "i386-unknown-freebsd",
     constraint_values = [
-        "//constraints/cpu:i386",
+        "//constraints/cpu:x86_32",
         "//constraints/os:freebsd",
     ],
 )
 
 config_setting(
-    name = "x86_64-freebsd",
+    name = "x86_64-unknown-freebsd",
     constraint_values = [
         "//constraints/cpu:x86_64",
         "//constraints/os:freebsd",
@@ -68,7 +70,7 @@ config_setting(
 #
 
 config_setting(
-    name = "aarch64-linux",
+    name = "aarch64-unknown-linux-gnu",
     constraint_values = [
         "//constraints/cpu:aarch64",
         "//constraints/os:linux",
@@ -76,23 +78,25 @@ config_setting(
 )
 
 config_setting(
-    name = "arm-linux",
+    name = "armv7a-unknown-linux-gnueabihf",
     constraint_values = [
+        "//constraints/arch/arm:armv7-a",
         "//constraints/cpu:arm",
+        "//constraints/float:hard",
         "//constraints/os:linux",
     ],
 )
 
 config_setting(
-    name = "i386-linux",
+    name = "i686-pc-linux-gnu",
     constraint_values = [
-        "//constraints/cpu:i386",
+        "//constraints/cpu:x86_32",
         "//constraints/os:linux",
     ],
 )
 
 config_setting(
-    name = "x86_64-linux",
+    name = "x86_64-pc-linux-gnu",
     constraint_values = [
         "//constraints/cpu:x86_64",
         "//constraints/os:linux",
@@ -104,10 +108,10 @@ config_setting(
 #
 
 config_setting(
-    name = "x86_64-macosx",
+    name = "x86_64-apple-macos",
     constraint_values = [
         "//constraints/cpu:x86_64",
-        "//constraints/os:macosx",
+        "//constraints/os:macos",
     ],
 )
 
@@ -116,7 +120,7 @@ config_setting(
 #
 
 config_setting(
-    name = "aarch64-netbsd",
+    name = "aarch64-unknown-netbsd",
     constraint_values = [
         "//constraints/cpu:aarch64",
         "//constraints/os:netbsd",
@@ -124,23 +128,25 @@ config_setting(
 )
 
 config_setting(
-    name = "arm-netbsd",
+    name = "armv7-unknown-netbsdelf-eabihf",
     constraint_values = [
+        "//constraints/arch/arm:armv7-a",
         "//constraints/cpu:arm",
+        "//constraints/float:hard",
         "//constraints/os:netbsd",
     ],
 )
 
 config_setting(
-    name = "i386-netbsd",
+    name = "i386-unknown-netbsdelf",
     constraint_values = [
-        "//constraints/cpu:i386",
+        "//constraints/cpu:x86_32",
         "//constraints/os:netbsd",
     ],
 )
 
 config_setting(
-    name = "x86_64-netbsd",
+    name = "x86_64-unknown-netbsd",
     constraint_values = [
         "//constraints/cpu:x86_64",
         "//constraints/os:netbsd",
@@ -152,7 +158,15 @@ config_setting(
 #
 
 config_setting(
-    name = "aarch64-openbsd",
+    name = "amd64-unknown-openbsd",
+    constraint_values = [
+        "//constraints/cpu:x86_64",
+        "//constraints/os:openbsd",
+    ],
+)
+
+config_setting(
+    name = "aarch64-unknown-openbsd",
     constraint_values = [
         "//constraints/cpu:aarch64",
         "//constraints/os:openbsd",
@@ -160,7 +174,7 @@ config_setting(
 )
 
 config_setting(
-    name = "arm-openbsd",
+    name = "arm-unknown-openbsd",
     constraint_values = [
         "//constraints/cpu:arm",
         "//constraints/os:openbsd",
@@ -168,17 +182,9 @@ config_setting(
 )
 
 config_setting(
-    name = "i386-openbsd",
+    name = "i386-unknown-openbsd",
     constraint_values = [
-        "//constraints/cpu:i386",
-        "//constraints/os:openbsd",
-    ],
-)
-
-config_setting(
-    name = "x86_64-openbsd",
-    constraint_values = [
-        "//constraints/cpu:x86_64",
+        "//constraints/cpu:x86_32",
         "//constraints/os:openbsd",
     ],
 )
@@ -218,7 +224,7 @@ config_setting(
 config_setting(
     name = "i386-windows",
     constraint_values = [
-        "//constraints/cpu:i386",
+        "//constraints/cpu:x86_32",
         "//constraints/os:windows",
     ],
 )

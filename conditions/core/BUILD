@@ -14,10 +14,3 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
 package(default_visibility = ["//visibility:public"])
-
-config_setting(
-    name = "generic",
-    constraint_values = [
-        "//constraints/core:generic",
-    ],
-)

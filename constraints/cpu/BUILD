@@ -30,11 +30,6 @@ alias(
     actual = "@bazel_tools//platforms:arm",
 )
 
-alias(
-    name = "i386",
-    actual = "@bazel_tools//platforms:x86_32",
-)
-
 constraint_value(
     name = "mips",
     constraint_setting = ":cpu",
@@ -58,6 +53,11 @@ alias(
 alias(
     name = "s390x",
     actual = "@bazel_tools//platforms:s390x",
+)
+
+alias(
+    name = "x86_32",
+    actual = "@bazel_tools//platforms:x86_32",
 )
 
 alias(

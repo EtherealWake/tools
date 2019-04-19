@@ -20,9 +20,11 @@ package(default_visibility = ["//visibility:public"])
 #
 
 platform(
-    name = "x86_64-dragonfly",
+    name = "x86_64-pc-dragonfly",
     constraint_values = [
         "//constraints/cpu:x86_64",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
         "//constraints/os:dragonfly",
     ],
 )
@@ -32,33 +34,43 @@ platform(
 #
 
 platform(
-    name = "aarch64-freebsd",
+    name = "aarch64-unknown-freebsd",
     constraint_values = [
         "//constraints/cpu:aarch64",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
         "//constraints/os:freebsd",
     ],
 )
 
 platform(
-    name = "arm-freebsd",
+    name = "armv7-gnueabihf-freebsd",
     constraint_values = [
+        "//constraints/arch/arm:armv7-a",
+        "//constraints/arm/profile:application",
         "//constraints/cpu:arm",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
         "//constraints/os:freebsd",
     ],
 )
 
 platform(
-    name = "i386-freebsd",
+    name = "i386-unknown-freebsd",
     constraint_values = [
-        "//constraints/cpu:i386",
+        "//constraints/cpu:x86_32",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
         "//constraints/os:freebsd",
     ],
 )
 
 platform(
-    name = "x86_64-freebsd",
+    name = "x86_64-unknown-freebsd",
     constraint_values = [
         "//constraints/cpu:x86_64",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
         "//constraints/os:freebsd",
     ],
 )
@@ -68,33 +80,43 @@ platform(
 #
 
 platform(
-    name = "aarch64-linux",
+    name = "aarch64-unknown-linux-gnu",
     constraint_values = [
         "//constraints/cpu:aarch64",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
         "//constraints/os:linux",
     ],
 )
 
 platform(
-    name = "arm-linux",
+    name = "armv7a-unknown-linux-gnueabihf",
     constraint_values = [
+        "//constraints/arch/arm:armv7-a",
+        "//constraints/arm/profile:application",
         "//constraints/cpu:arm",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
         "//constraints/os:linux",
     ],
 )
 
 platform(
-    name = "i386-linux",
+    name = "i686-pc-linux-gnu",
     constraint_values = [
-        "//constraints/cpu:i386",
+        "//constraints/cpu:x86_32",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
         "//constraints/os:linux",
     ],
 )
 
 platform(
-    name = "x86_64-linux",
+    name = "x86_64-pc-linux-gnu",
     constraint_values = [
         "//constraints/cpu:x86_64",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
         "//constraints/os:linux",
     ],
 )
@@ -104,10 +126,12 @@ platform(
 #
 
 platform(
-    name = "x86_64-macosx",
+    name = "x86_64-apple-macos",
     constraint_values = [
         "//constraints/cpu:x86_64",
-        "//constraints/os:macosx",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
+        "//constraints/os:macos",
     ],
 )
 
@@ -116,33 +140,43 @@ platform(
 #
 
 platform(
-    name = "aarch64-netbsd",
+    name = "aarch64-unknown-netbsd",
     constraint_values = [
         "//constraints/cpu:aarch64",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
         "//constraints/os:netbsd",
     ],
 )
 
 platform(
-    name = "arm-netbsd",
+    name = "armv7-unknown-netbsdelf-eabihf",
     constraint_values = [
+        "//constraints/arch/arm:armv7-a",
+        "//constraints/arm/profile:application",
         "//constraints/cpu:arm",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
         "//constraints/os:netbsd",
     ],
 )
 
 platform(
-    name = "i386-netbsd",
+    name = "i386-unknown-netbsdelf",
     constraint_values = [
-        "//constraints/cpu:i386",
+        "//constraints/cpu:x86_32",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
         "//constraints/os:netbsd",
     ],
 )
 
 platform(
-    name = "x86_64-netbsd",
+    name = "x86_64-unknown-netbsd",
     constraint_values = [
         "//constraints/cpu:x86_64",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
         "//constraints/os:netbsd",
     ],
 )
@@ -152,33 +186,43 @@ platform(
 #
 
 platform(
-    name = "aarch64-openbsd",
-    constraint_values = [
-        "//constraints/cpu:aarch64",
-        "//constraints/os:openbsd",
-    ],
-)
-
-platform(
-    name = "arm-openbsd",
-    constraint_values = [
-        "//constraints/cpu:arm",
-        "//constraints/os:openbsd",
-    ],
-)
-
-platform(
-    name = "i386-openbsd",
-    constraint_values = [
-        "//constraints/cpu:i386",
-        "//constraints/os:openbsd",
-    ],
-)
-
-platform(
-    name = "x86_64-openbsd",
+    name = "amd64-unknown-openbsd",
     constraint_values = [
         "//constraints/cpu:x86_64",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
+        "//constraints/os:openbsd",
+    ],
+)
+
+platform(
+    name = "aarch64-unknown-openbsd",
+    constraint_values = [
+        "//constraints/cpu:aarch64",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
+        "//constraints/os:openbsd",
+    ],
+)
+
+platform(
+    name = "arm-unknown-openbsd",
+    constraint_values = [
+        "//constraints/arch/arm:armv7-a",
+        "//constraints/arm/profile:application",
+        "//constraints/cpu:arm",
+        "//constraints/endian:little",
+        "//constraints/float:soft",
+        "//constraints/os:openbsd",
+    ],
+)
+
+platform(
+    name = "i386-unknown-openbsd",
+    constraint_values = [
+        "//constraints/cpu:x86_32",
+        "//constraints/endian:little",
+        "//constraints/float:hard",
         "//constraints/os:openbsd",
     ],
 )
@@ -218,7 +262,7 @@ platform(
 platform(
     name = "i386-windows",
     constraint_values = [
-        "//constraints/cpu:i386",
+        "//constraints/cpu:x86_32",
         "//constraints/os:windows",
     ],
 )

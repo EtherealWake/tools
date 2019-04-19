@@ -51,9 +51,9 @@ config_setting(
 )
 
 config_setting(
-    name = "macosx",
+    name = "macos",
     constraint_values = [
-        "//constraints/os:macosx",
+        "//constraints/os:macos",
     ],
 )
 

@@ -28,11 +28,10 @@ def llvm_alias(name):
     native.alias(
         name = name,
         actual = select({
-            _PLATFORMS + ":i386-freebsd": "@org_llvm_i386_freebsd//:" + name,
-            _PLATFORMS + ":x86_64-freebsd": "@org_llvm_amd64_freebsd//:" + name,
-            _PLATFORMS + ":i386-linux": "@org_llvm_i386_linux//:" + name,
-            _PLATFORMS + ":x86_64-linux": "@org_llvm_amd64_linux//:" + name,
-            _PLATFORMS + ":x86_64-macosx": "@org_llvm_amd64_darwin//:" + name,
+            _PLATFORMS + ":i386-unknown-freebsd": "@org_llvm_i386_freebsd//:" + name,
+            _PLATFORMS + ":x86_64-unknown-freebsd": "@org_llvm_amd64_freebsd//:" + name,
+            _PLATFORMS + ":x86_64-pc-linux-gnu": "@org_llvm_amd64_linux//:" + name,
+            _PLATFORMS + ":x86_64-apple-macos": "@org_llvm_amd64_darwin//:" + name,
             _PLATFORMS + ":i386-windows": "@org_llvm_i386_windows//:" + name,
             _PLATFORMS + ":x86_64-windows": "@org_llvm_amd64_windows//:" + name,
         }),

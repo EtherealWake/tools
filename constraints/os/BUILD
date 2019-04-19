@@ -46,7 +46,7 @@ alias(
 )
 
 alias(
-    name = "macosx",
+    name = "macos",
     actual = "@bazel_tools//platforms:osx",
 )
 

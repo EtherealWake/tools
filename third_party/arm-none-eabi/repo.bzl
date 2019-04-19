@@ -30,9 +30,9 @@ def arm_alias(name):
         actual = select({
             _PLATFORMS + ":i386-windows": "@arm_none_eabi_win32//:" + name,
             # No native FreeBSD version available.  Use Linux emulation.
-            _PLATFORMS + ":x86_64-freebsd": "@arm_none_eabi_linux//:" + name,
-            _PLATFORMS + ":x86_64-linux": "@arm_none_eabi_linux//:" + name,
-            _PLATFORMS + ":x86_64-macosx": "@arm_none_eabi_mac//:" + name,
+            _PLATFORMS + ":x86_64-unknown-freebsd": "@arm_none_eabi_linux//:" + name,
+            _PLATFORMS + ":x86_64-pc-linux-gnu": "@arm_none_eabi_linux//:" + name,
+            _PLATFORMS + ":x86_64-apple-macos": "@arm_none_eabi_mac//:" + name,
             _PLATFORMS + ":x86_64-windows": "@arm_none_eabi_win32//:" + name,
         }),
         tags = ["manual"],
