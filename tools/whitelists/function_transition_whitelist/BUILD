@@ -14,6 +14,7 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
 """Whitelist for transition()"""
+
 package(default_visibility = ["//visibility:public"])
 
 package_group(
