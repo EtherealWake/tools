@@ -54,6 +54,9 @@ _embedded_binary = rule(
         "deps": attr.label_list(
             allow_files = True,
         ),
+        "_whitelist_function_transition": attr.label(
+            default = "@//tools/whitelists/function_transition_whitelist",
+        ),
     },
     cfg = embedded_transition,
     implementation = _embedded_binary_impl,

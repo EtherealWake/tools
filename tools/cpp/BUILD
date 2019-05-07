@@ -16,8 +16,7 @@
 """C/C++ Language Support."""
 
 load("//cc:rules.bzl", "cc_library", "cc_test")
-load("//cc:toolchain.bzl", "arm_toolchain", "clang_toolchain")
-load("//embedded:rules.bzl", "embedded_binary")
+load("//cc:toolchain.bzl", "clang_toolchain")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -294,69 +293,8 @@ clang_toolchain(
 )
 
 #
-# ARM Embedded
-#
-
-arm_toolchain(
-    name = "cortex-m4f",
-    copts = [
-        "-fdiagnostics-color",
-        # Targetting
-        "-mcpu=cortex-m4",
-        "-mfloat-abi=hard",
-        "--specs=nosys.specs",
-        # Diagnostics
-        "-Wall",
-        "-Wextra",
-        "-Werror",
-        # Optimization
-        "-Os",
-        "-flto",
-    ],
-    cpu = "cortex-m4f",
-    linkopts = [
-        "-fdiagnostics-color",
-        # Targetting
-        "-mcpu=cortex-m4",
-        "-mfloat-abi=hard",
-        "-nostartfiles",
-        "-Wl,--nmagic",
-        "--specs=nosys.specs",
-        # Diagnostics
-        "-Wall",
-        "-Wextra",
-        "-Werror",
-    ],
-    modes = {
-        "dbg.copts": [
-            "-gz",
-            "-ggdb",
-        ],
-        "fastbuild.copts": ["-g0"],
-        "opt.copts": [
-            "-gz",
-            "-ggdb",
-        ],
-    },
-    target = "armv7em-none-eabihf",
-    target_compatible_with = [
-        "//constraints/core/arm:cortex-m4",
-        "//constraints/cpu:arm",
-        "//constraints/endian:little",
-        "//constraints/float:hard",
-        "//constraints/os:none",
-    ],
-)
-
-#
 # Tests
 #
-
-embedded_binary(
-    name = "embedded",
-    srcs = ["start.cpp"],
-    platform = "//platforms/arm:cortex-m4f",
-)
 
 cc_test(
     name = "test",

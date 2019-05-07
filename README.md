@@ -60,7 +60,7 @@ Toolchain downloaded directly from
 [arm.com](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads).
 Intended for Cortex-M and Cortex-R processors, this can be used to generate
 code for any ARM processor on a baremetal platform.  An example targeting the
-Cortex-M4F processor can be found in `//tools/cpp:cortex-m4f`.
+Cortex-M4F processor can be found in `//tools/embedded:cortex-m4f`.
 
 ### Clang Toolchain
 

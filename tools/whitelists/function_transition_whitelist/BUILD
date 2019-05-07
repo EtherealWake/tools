@@ -13,22 +13,12 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
-workspace(name = "com_etherealwake_tools")
+"""Whitelist for transition()"""
+package(default_visibility = ["//visibility:public"])
 
-load(
-    ":workspace.bzl",
-    "tools_dependencies",
-    "tools_register_cross_toolchains",
-    "tools_register_native_toolchains",
+package_group(
+    name = "function_transition_whitelist",
+    packages = [
+        "//embedded/...",
+    ],
 )
-
-tools_dependencies()
-
-# Demonstration Toolchains
-register_toolchains(
-    "//tools/embedded:cortex-m4f",
-)
-
-tools_register_native_toolchains()
-
-tools_register_cross_toolchains()
