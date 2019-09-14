@@ -17,17 +17,19 @@ package(default_visibility = ["//visibility:public"])
 
 alias(
     name = "cpu",
-    actual = "@bazel_tools//platforms:cpu",
+    actual = "@platforms//cpu",
 )
 
+# NOTE: Semi-Deprecated Upstream
 alias(
     name = "aarch64",
-    actual = "@bazel_tools//platforms:aarch64",
+    actual = "@platforms//cpu:aarch64",
 )
 
+# NOTE: Semi-Deprecated Upstream
 alias(
     name = "arm",
-    actual = "@bazel_tools//platforms:arm",
+    actual = "@platforms//cpu:arm",
 )
 
 constraint_value(
@@ -47,20 +49,20 @@ constraint_value(
 
 alias(
     name = "powerpc64",
-    actual = "@bazel_tools//platforms:ppc",
+    actual = "@platforms//cpu:ppc",
 )
 
 alias(
     name = "s390x",
-    actual = "@bazel_tools//platforms:s390x",
+    actual = "@platforms//cpu:s390x",
 )
 
 alias(
     name = "x86_32",
-    actual = "@bazel_tools//platforms:x86_32",
+    actual = "@platforms//cpu:x86_32",
 )
 
 alias(
     name = "x86_64",
-    actual = "@bazel_tools//platforms:x86_64",
+    actual = "@platforms//cpu:x86_64",
 )

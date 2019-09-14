@@ -15,10 +15,25 @@
 #
 """Aliases for Built-In C/C++ Rules"""
 
-cc_binary = native.cc_binary
-cc_import = native.cc_import
-cc_library = native.cc_library
-cc_test = native.cc_test
-cc_proto_library = native.cc_proto_library
-fdo_prefetch_hints = native.fdo_prefetch_hints
-fdo_profile = native.fdo_profile
+load(
+    "@rules_cc//cc:defs.bzl",
+    _cc_binary = "cc_binary",
+    _cc_import = "cc_import",
+    _cc_library = "cc_library",
+    _cc_proto_library = "cc_proto_library",
+    _cc_test = "cc_test",
+    _cc_toolchain = "cc_toolchain",
+    _cc_toolchain_suite = "cc_toolchain_suite",
+    _fdo_prefetch_hints = "fdo_prefetch_hints",
+    _fdo_profile = "fdo_profile",
+)
+
+cc_binary = _cc_binary
+cc_import = _cc_import
+cc_library = _cc_library
+cc_proto_library = _cc_proto_library
+cc_test = _cc_test
+cc_toolchain = _cc_toolchain
+cc_toolchain_suite = _cc_toolchain_suite
+fdo_prefetch_hints = _fdo_prefetch_hints
+fdo_profile = _fdo_profile

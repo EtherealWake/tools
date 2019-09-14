@@ -40,6 +40,7 @@ load(
     "make_user_compile_flags_feature",
     "make_user_link_flags_feature",
 )
+load("//cc:rules.bzl", "cc_toolchain")
 
 #
 # GCC-Compatible Features
@@ -668,7 +669,7 @@ def gcc_toolchain(
             visibility = ["//visibility:private"],
         )
         all_files = ":%s-files" % name
-    native.cc_toolchain(
+    cc_toolchain(
         name = name + "-toolchain",
         all_files = all_files,
         compiler_files = compiler_files,

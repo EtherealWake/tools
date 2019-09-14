@@ -17,12 +17,12 @@ package(default_visibility = ["//visibility:public"])
 
 alias(
     name = "os",
-    actual = "@bazel_tools//platforms:os",
+    actual = "@platforms//os",
 )
 
 alias(
     name = "android",
-    actual = "@bazel_tools//platforms:android",
+    actual = "@platforms//os:android",
 )
 
 constraint_value(
@@ -32,22 +32,22 @@ constraint_value(
 
 alias(
     name = "freebsd",
-    actual = "@bazel_tools//platforms:freebsd",
+    actual = "@platforms//os:freebsd",
 )
 
 alias(
     name = "ios",
-    actual = "@bazel_tools//platforms:ios",
+    actual = "@platforms//os:ios",
 )
 
 alias(
     name = "linux",
-    actual = "@bazel_tools//platforms:linux",
+    actual = "@platforms//os:linux",
 )
 
 alias(
-    name = "macos",
-    actual = "@bazel_tools//platforms:osx",
+    name = "none",
+    actual = "@platforms//os:none",
 )
 
 constraint_value(
@@ -55,9 +55,9 @@ constraint_value(
     constraint_setting = ":os",
 )
 
-constraint_value(
-    name = "none",
-    constraint_setting = ":os",
+alias(
+    name = "macos",
+    actual = "@platforms//os:macos",
 )
 
 constraint_value(
@@ -67,5 +67,5 @@ constraint_value(
 
 alias(
     name = "windows",
-    actual = "@bazel_tools//platforms:windows",
+    actual = "@platforms//os:windows",
 )

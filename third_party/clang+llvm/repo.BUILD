@@ -34,11 +34,17 @@ filegroup(
     name = "compiler_files",
     srcs = glob([
         "bin/**",
-        "lib/*.dll",
-        "lib/*.dylib",
-        "lib/*.so",
         "lib/clang/**",
-    ]),
+    ]) + glob(
+        include = ["lib/*.dll"],
+        allow_empty = True,
+    ) + glob(
+        include = ["lib/*.dylib"],
+        allow_empty = True,
+    ) + glob(
+        include = ["lib/*.so"],
+        allow_empty = True,
+    ),
 )
 
 #
