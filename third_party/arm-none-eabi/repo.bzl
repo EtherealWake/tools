@@ -15,10 +15,10 @@
 #
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-VERSION = "8-2018-q4-major"
+VERSION = "9-2019-q4-major"
 _BUILD = "@com_etherealwake_tools//third_party/arm-none-eabi:repo.BUILD"
 _PLATFORMS = "@com_etherealwake_tools//conditions/platforms"
-_URL = "https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2018q4/"
+_URL = "https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2019q4/RC2.1/"
 
 def _maybe(name, rule, **kwargs):
     if name not in native.existing_rules():
@@ -43,7 +43,7 @@ def arm_dependencies():
         name = "arm_none_eabi_linux",
         build_file = _BUILD,
         rule = http_archive,
-        sha256 = "fb31fbdfe08406ece43eef5df623c0b2deb8b53e405e2c878300f7a1f303ee52",
-        strip_prefix = "gcc-arm-none-eabi-8-2018-q4-major",
-        url = _URL + "gcc-arm-none-eabi-8-2018-q4-major-linux.tar.bz2",
+        sha256 = "bcd840f839d5bf49279638e9f67890b2ef3a7c9c7a9b25271e83ec4ff41d177a",
+        strip_prefix = "gcc-arm-none-eabi-%s" % VERSION,
+        url = _URL + "gcc-arm-none-eabi-%s-x86_64-linux.tar.bz2" % VERSION,
     )
