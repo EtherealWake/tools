@@ -15,7 +15,7 @@
 #
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-VERSION = "8.0.0"
+VERSION = "9.0.0"
 _BUILD = "@com_etherealwake_tools//third_party/clang+llvm:repo.BUILD"
 _PLATFORMS = "//conditions/platforms"
 _URL = "http://releases.llvm.org/%s/" % VERSION
@@ -43,15 +43,15 @@ def llvm_dependencies():
         name = "org_llvm_amd64_freebsd",
         build_file = _BUILD,
         rule = http_archive,
-        sha256 = "af15d14bd25e469e35ed7c43cb7e035bc1b2aa7b55d26ad597a43e72768750a8",
-        strip_prefix = "clang+llvm-8.0.0-amd64-unknown-freebsd11",
-        url = _URL + "clang+llvm-8.0.0-amd64-unknown-freebsd11.tar.xz",
+        sha256 = "2a1f123a9d992c9719ef7677e127182ca707a5984a929f1c3f34fbb95ffbf6f3",
+        strip_prefix = "clang+llvm-%s-amd64-unknown-freebsd11" % VERSION,
+        url = _URL + "clang+llvm-%s-amd64-unknown-freebsd11.tar.xz" % VERSION,
     )
     _maybe(
         name = "org_llvm_amd64_linux",
         build_file = _BUILD,
         rule = http_archive,
-        sha256 = "9ef854b71949f825362a119bf2597f744836cb571131ae6b721cd102ffea8cd0",
-        strip_prefix = "clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-14.04",
-        url = _URL + "clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-14.04.tar.xz",
+        sha256 = "bea706c8f6992497d08488f44e77b8f0f87f5b275295b974aa8b194efba18cb8",
+        strip_prefix = "clang+llvm-%s-x86_64-linux-gnu-ubuntu-14.04" % VERSION,
+        url = _URL + "clang+llvm-%s-x86_64-linux-gnu-ubuntu-14.04.tar.xz" % VERSION,
     )
