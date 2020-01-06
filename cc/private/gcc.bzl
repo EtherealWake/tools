@@ -669,9 +669,18 @@ def gcc_toolchain(
             visibility = ["//visibility:private"],
         )
         all_files = ":%s-files" % name
+        native.filegroup(
+            name = name + "-compiler-files",
+            srcs = [compiler_files] + target_files,
+            tags = ["manual"],
+            visibility = ["//visibility:private"],
+        )
+        compiler_files = ":%s-compiler-files" % name
     cc_toolchain(
         name = name + "-toolchain",
         all_files = all_files,
+        ar_files = kwargs["artool"],
+        as_files = compiler_files,
         compiler_files = compiler_files,
         dwp_files = compiler_files,
         libc_top = None,

@@ -31,7 +31,6 @@ arm_toolchain(
         # Targetting
         "-mcpu=cortex-m4",
         "-mfloat-abi=hard",
-        "--specs=nosys.specs",
         # Diagnostics
         "-Wall",
         "-Wextra",
@@ -48,7 +47,6 @@ arm_toolchain(
         "-mfloat-abi=hard",
         "-nostartfiles",
         "-Wl,--nmagic",
-        "--specs=nosys.specs",
         # Diagnostics
         "-Wall",
         "-Wextra",
@@ -66,6 +64,7 @@ arm_toolchain(
         ],
     },
     target = "armv7em-none-eabihf",
+    target_files = ["//third_party/arm-none-eabi:newlib_files"],
     target_compatible_with = [
         "//constraints/core/arm:cortex-m4",
         "//constraints/cpu:arm",
