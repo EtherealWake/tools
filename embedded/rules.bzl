@@ -65,6 +65,9 @@ _embedded_binary = rule(
 def embedded_binary(
         name,
         platform,
+        additional_linker_inputs = [],
+        linkopts = [],
+        linker_script = None,
         tags = None,
         testonly = False,
         visibility = None,
@@ -76,10 +79,16 @@ def embedded_binary(
             binary will be named according to this attribute.
         platform: (Label; required) Identifies the target `platform` for the
             binary.
+        linker_script: (Label; optional) Linker script.
         **kwargs: Standard arguments for `cc_binary`.
     """
+    if linker_script:
+        additional_linker_inputs = additional_linker_inputs + [linker_script]
+        linkopts = linkopts + ['-Wl,-T,$(location %s)' % linker_script]
     cc_binary(
         name = name + ".elf",
+        additional_linker_inputs = additional_linker_inputs,
+        linkopts = linkopts,
         tags = ["manual"],
         testonly = testonly,
         visibility = ["//visibility:private"],
